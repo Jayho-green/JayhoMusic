@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : mydata
+ Source Server         : root@localhost
  Source Server Type    : MySQL
- Source Server Version : 80018
+ Source Server Version : 80026
  Source Host           : localhost:3306
  Source Schema         : musicsystem
 
  Target Server Type    : MySQL
- Target Server Version : 80018
+ Target Server Version : 80026
  File Encoding         : 65001
 
- Date: 14/04/2020 13:16:14
+ Date: 26/04/2022 18:15:59
 */
 
 SET NAMES utf8mb4;
@@ -22,15 +22,15 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `collect`;
 CREATE TABLE `collect`  (
-  `date` datetime(0) NULL,
-  `userid` int(11) NOT NULL,
-  `musicid` int(11) NOT NULL,
+  `date` datetime NOT NULL,
+  `userid` int NOT NULL,
+  `musicid` int NOT NULL,
   PRIMARY KEY (`date`) USING BTREE,
   INDEX `userid1`(`userid`) USING BTREE,
   INDEX `musicid1`(`musicid`) USING BTREE,
   CONSTRAINT `musicid1` FOREIGN KEY (`musicid`) REFERENCES `music` (`musicid`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `userid1` FOREIGN KEY (`userid`) REFERENCES `user` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of collect
@@ -43,13 +43,13 @@ INSERT INTO `collect` VALUES ('2020-03-30 12:10:05', 2, 4);
 -- ----------------------------
 DROP TABLE IF EXISTS `collectlist`;
 CREATE TABLE `collectlist`  (
-  `userid` int(11) NOT NULL,
-  `listid` int(11) NOT NULL,
+  `userid` int NOT NULL,
+  `listid` int NOT NULL,
   INDEX `listid2`(`listid`) USING BTREE,
   INDEX `userid7`(`userid`) USING BTREE,
   CONSTRAINT `listid2` FOREIGN KEY (`listid`) REFERENCES `list` (`listid`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `userid7` FOREIGN KEY (`userid`) REFERENCES `user` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of collectlist
@@ -66,17 +66,17 @@ INSERT INTO `collectlist` VALUES (2, 6);
 -- ----------------------------
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment`  (
-  `commentid` int(11) NOT NULL AUTO_INCREMENT,
+  `commentid` int NOT NULL AUTO_INCREMENT,
   `comment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `userid` int(11) NOT NULL,
-  `musicid` int(11) NOT NULL,
-  `date` datetime(0) NULL,
+  `userid` int NOT NULL,
+  `musicid` int NOT NULL,
+  `date` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`commentid`) USING BTREE,
   INDEX `userid`(`userid`) USING BTREE,
   INDEX `musicid`(`musicid`) USING BTREE,
   CONSTRAINT `musicid` FOREIGN KEY (`musicid`) REFERENCES `music` (`musicid`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `userid` FOREIGN KEY (`userid`) REFERENCES `user` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of comment
@@ -100,12 +100,12 @@ INSERT INTO `comment` VALUES (13, '我喜欢', 2, 7, '2020-03-30 12:10:59');
 -- ----------------------------
 DROP TABLE IF EXISTS `list`;
 CREATE TABLE `list`  (
-  `listid` int(11) NOT NULL AUTO_INCREMENT,
+  `listid` int NOT NULL AUTO_INCREMENT,
   `listimg` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `listname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `listintro` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`listid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of list
@@ -122,16 +122,16 @@ INSERT INTO `list` VALUES (6, 'http://p3.music.126.net/636SSPpKW0avAqkK1QgzgQ==/
 -- ----------------------------
 DROP TABLE IF EXISTS `music`;
 CREATE TABLE `music`  (
-  `musicid` int(11) NOT NULL AUTO_INCREMENT,
+  `musicid` int NOT NULL AUTO_INCREMENT,
   `musicname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `singerid` int(11) NOT NULL,
-  `hot` int(11) NULL DEFAULT NULL,
+  `singerid` int NOT NULL,
+  `hot` int NULL DEFAULT NULL,
   `musicimg` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `musicfile` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`musicid`) USING BTREE,
   INDEX `singerid`(`singerid`) USING BTREE,
   CONSTRAINT `singerid` FOREIGN KEY (`singerid`) REFERENCES `singer` (`singerid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of music
@@ -150,13 +150,13 @@ INSERT INTO `music` VALUES (8, '无条件(Live)', 6, 30, 'http://localhost:8088/
 -- ----------------------------
 DROP TABLE IF EXISTS `musiclist`;
 CREATE TABLE `musiclist`  (
-  `listid` int(11) NOT NULL,
-  `musicid` int(11) NOT NULL,
+  `listid` int NOT NULL,
+  `musicid` int NOT NULL,
   INDEX `listid1`(`listid`) USING BTREE,
   INDEX `musicid6`(`musicid`) USING BTREE,
   CONSTRAINT `listid1` FOREIGN KEY (`listid`) REFERENCES `list` (`listid`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `musicid6` FOREIGN KEY (`musicid`) REFERENCES `music` (`musicid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of musiclist
@@ -168,17 +168,40 @@ INSERT INTO `musiclist` VALUES (3, 7);
 INSERT INTO `musiclist` VALUES (3, 8);
 
 -- ----------------------------
+-- Table structure for review
+-- ----------------------------
+DROP TABLE IF EXISTS `review`;
+CREATE TABLE `review`  (
+  `reviewid` int NOT NULL AUTO_INCREMENT,
+  `userid` int NULL DEFAULT NULL,
+  `reason` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `details` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `country` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `result` int NULL DEFAULT NULL,
+  `music` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`reviewid`) USING BTREE,
+  INDEX `userid_review`(`userid`) USING BTREE,
+  CONSTRAINT `userid_review` FOREIGN KEY (`userid`) REFERENCES `user` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of review
+-- ----------------------------
+INSERT INTO `review` VALUES (1, 2, '因为我很帅，唱歌又好听', '会唱跳rap篮球的坤坤', 'http://localhost:8088/reqimg/36c2cfb1-4dff-49b4-9b43-98c86aeb2372.jpg', '米国', 0, 'http://localhost:8088/reqmusic/8d699b0e-c475-4f4d-b0bb-cd9f2aa3f108.mp3');
+
+-- ----------------------------
 -- Table structure for singer
 -- ----------------------------
 DROP TABLE IF EXISTS `singer`;
 CREATE TABLE `singer`  (
-  `singerid` int(11) NOT NULL,
+  `singerid` int NOT NULL,
   `singername` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `singerdetails` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `singerimg` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `singercountry` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`singerid`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of singer
@@ -195,14 +218,14 @@ INSERT INTO `singer` VALUES (6, '陈奕迅', '著名实力派粤语流行音乐�
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
-  `userid` int(11) NOT NULL AUTO_INCREMENT,
-  `rowid` int(1) NOT NULL,
+  `userid` int NOT NULL AUTO_INCREMENT,
+  `rowid` int NOT NULL,
   `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `password` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `sex` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `birth` date NULL DEFAULT NULL,
   PRIMARY KEY (`userid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user
