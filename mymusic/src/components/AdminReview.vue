@@ -29,16 +29,6 @@
             </a-tooltip>
             <a-tag style="margin-left: 40%;margin-top: 30px" color="green" v-show="review.result==='1'">审核成功</a-tag>
             <a-tag style="margin-left: 40%;margin-top: 30px" color="volcano" v-show="review.result==='-1'">审核失败</a-tag>
-            <a-modal v-model="submitModal" :closable="false" :footer="null" width="350px">
-                <slide-verify  ref="slideblock"
-                               @again="onAgain"
-                               @success="onSuccess"
-                               @fail="onFail"
-                               :accuracy="accuracy"
-                               :imgs="imgs"
-                               slider-text="滑一滑"
-                              ></slide-verify>
-            </a-modal>
         </a-card>
     </div>
 </template>
@@ -61,34 +51,22 @@
         },
         methods:{
             reviewSuccess(){
-                this.reviewResult='1';
-                this.submitModal=true;
+              this.axios.get('/user/reviewSuccess?userid='+this.review.userid)
+                  .then(res=>{
+                    this.$router.push('/adminPage');
+                    this.$message.success('操作成功！');
+                  }).catch(err=>{
+                console.log(err);
+              })
             },
             reviewFail(){
-                this.reviewResult='0';
-                this.submitModal=true;
-            },
-            onSuccess(){
-                if(this.reviewResult==='1'){
-                    this.axios.get('/user/reviewSuccess?userid='+this.review.userid)
-                    .then(res=>{
-                        this.$router.push('/adminPage');
-                        this.$message.success('操作成功！');
-                    }).catch(err=>{
-                        console.log(err);
-                    })
-                }if(this.reviewResult==='0'){
-                    this.axios.get('/user/reviewFail?userid='+this.review.userid)
-                        .then(res=>{
-                            this.$message.success('操作成功！');
-                            this.$router.push('/adminPage');
-                        }).catch(err=>{
-                            console.log(err);
-                    })
-                }
-            },
-            onFail(){
-                this.$message.error("验证失败");
+              this.axios.get('/user/reviewFail?userid='+this.review.userid)
+                  .then(res=>{
+                    this.$message.success('操作成功！');
+                    this.$router.push('/adminPage');
+                  }).catch(err=>{
+                console.log(err);
+              })
             },
             onAgain() {
                 this.$message.warning("检测到非人为操作");

@@ -23,7 +23,7 @@
                        </template>
                    </a-table-column>
                    <a-table-column dataIndex="singername" key="singername">
-                       <span slot="title">歌手</span>
+                       <span slot="title">音乐人</span>
                        <template slot-scope="singername">
                            <span style="cursor: pointer" @click="toSingerInfo(singername)">{{ singername }}</span>
                        </template>

@@ -21,7 +21,7 @@
 
             <a-tooltip placement="top">
                 <template slot="title">
-                    <span>收藏此曲目</span>
+                    <span>收藏此音乐</span>
                 </template>
             <a-icon type="plus-circle" theme="twoTone" class="activeClass" @click="collect" v-show="!existCollect"/>
             </a-tooltip>
@@ -33,7 +33,7 @@
             <a-icon type="minus-circle" theme="twoTone" class="activeClass" @click="removeCollect" twoToneColor="red"
                     v-show="existCollect"/>
             </a-tooltip>
-            <span style="font-size: 16px;margin-left: 30px">({{musicInfo.hot}}人收藏了此曲目)</span>
+            <span style="font-size: 16px;margin-left: 30px">({{musicInfo.hot}}人收藏了此音乐)</span>
         </div>
         <a-card style="margin: 0 15%" :bordered="false">
         <a-list

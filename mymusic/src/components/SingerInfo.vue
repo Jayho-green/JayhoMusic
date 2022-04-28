@@ -9,7 +9,7 @@
                         {{music.musicname}}
                     </div>
                 </template>
-            <span>曲目数:{{singerInfo.musicnum}}</span>
+            <span>音乐数:{{singerInfo.musicnum}}</span>
             </a-tooltip>
         </div>
         <div style="font-size: 20px;text-align: center;margin-top: 20px">{{singerInfo.singercountry}}人</div>

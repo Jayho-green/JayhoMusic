@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div v-show="musicList.length>0">
-        <span style="margin-top: 30px;font-size: 20px;">相关歌曲</span>
+        <span style="margin-top: 30px;font-size: 20px;">相关音乐</span>
             <a-divider/>
                 <div v-for="(music,index) in musicList" :key="index" style="margin-top: 20px">
                     <img @click="toMusicInfo(music)" class="activeClass" :src="music.musicimg" height="200px" width="200px" :alt="music.musicname">

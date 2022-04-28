@@ -8,11 +8,11 @@
                   </MenuItem>
                   <MenuItem name="2">
                       <Icon type="ios-headset" />
-                      歌单
+                      音乐
                   </MenuItem>
                   <MenuItem name="3">
                       <Icon type="ios-people" />
-                      歌手
+                      音乐人
                   </MenuItem>
                   <MenuItem name="4">
                       <Icon type="ios-person" />
@@ -28,7 +28,7 @@
               </a-layout-content>
               </a-layout>
           <a-layout-footer style="text-align: center;background-color:white">
-              <a-icon type="customer-service" /> Liang's Music Paradise
+              <a-icon type="customer-service" /> Jayho Music
           </a-layout-footer>
           </a-layout>
 </template>

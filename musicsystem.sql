@@ -11,7 +11,7 @@
  Target Server Version : 80026
  File Encoding         : 65001
 
- Date: 26/04/2022 18:15:59
+ Date: 27/04/2022 11:31:49
 */
 
 SET NAMES utf8mb4;
@@ -37,6 +37,7 @@ CREATE TABLE `collect`  (
 -- ----------------------------
 INSERT INTO `collect` VALUES ('2020-03-24 16:09:37', 2, 1);
 INSERT INTO `collect` VALUES ('2020-03-30 12:10:05', 2, 4);
+INSERT INTO `collect` VALUES ('2022-04-26 18:21:58', 1, 4);
 
 -- ----------------------------
 -- Table structure for collectlist
@@ -94,6 +95,7 @@ INSERT INTO `comment` VALUES (10, '我喜欢', 2, 3, '2020-03-30 11:48:23');
 INSERT INTO `comment` VALUES (11, '加一', 2, 3, '2020-03-30 11:54:13');
 INSERT INTO `comment` VALUES (12, 'aaaaaa', 2, 4, '2020-03-30 12:10:02');
 INSERT INTO `comment` VALUES (13, '我喜欢', 2, 7, '2020-03-30 12:10:59');
+INSERT INTO `comment` VALUES (14, 'like', 1, 7, '2022-04-26 18:22:11');
 
 -- ----------------------------
 -- Table structure for list
@@ -139,7 +141,7 @@ CREATE TABLE `music`  (
 INSERT INTO `music` VALUES (1, '说好不哭', 2, 10, 'http://localhost:8088/musicimg/Buku.png', 'http://localhost:8088/musicfile/Buku.ogg');
 INSERT INTO `music` VALUES (2, 'Closer', 1, 20, 'http://localhost:8088/musicimg/Closer.png', 'http://localhost:8088/musicfile/Closer.ogg');
 INSERT INTO `music` VALUES (3, 'Lemon', 3, 21, 'http://localhost:8088/musicimg/Lemon.png', 'http://localhost:8088/musicfile/Lemon.ogg');
-INSERT INTO `music` VALUES (4, '不为谁而作的歌', 4, 22, 'http://localhost:8088/musicimg/BuWei.jpg', 'http://localhost:8088/musicfile/BuWei.mp3');
+INSERT INTO `music` VALUES (4, '不为谁而作的歌', 4, 23, 'http://localhost:8088/musicimg/BuWei.jpg', 'http://localhost:8088/musicfile/BuWei.mp3');
 INSERT INTO `music` VALUES (5, '国王与乞丐', 5, 30, 'http://localhost:8088/musicimg/guowang.jpg', 'http://localhost:8088/musicfile/QiGai.mp3');
 INSERT INTO `music` VALUES (6, '烟火里的尘埃', 5, 32, 'http://localhost:8088/musicimg/YanHuo.jpg', 'http://localhost:8088/musicfile/ChenAi.mp3');
 INSERT INTO `music` VALUES (7, '浮夸', 6, 50, 'http://localhost:8088/musicimg/FuKua.jpg', 'http://localhost:8088/musicfile/Fukua.mp3');
@@ -188,14 +190,13 @@ CREATE TABLE `review`  (
 -- ----------------------------
 -- Records of review
 -- ----------------------------
-INSERT INTO `review` VALUES (1, 2, '因为我很帅，唱歌又好听', '会唱跳rap篮球的坤坤', 'http://localhost:8088/reqimg/36c2cfb1-4dff-49b4-9b43-98c86aeb2372.jpg', '米国', 0, 'http://localhost:8088/reqmusic/8d699b0e-c475-4f4d-b0bb-cd9f2aa3f108.mp3');
 
 -- ----------------------------
 -- Table structure for singer
 -- ----------------------------
 DROP TABLE IF EXISTS `singer`;
 CREATE TABLE `singer`  (
-  `singerid` int NOT NULL,
+  `singerid` int NOT NULL AUTO_INCREMENT,
   `singername` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `singerdetails` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `singerimg` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -232,5 +233,6 @@ CREATE TABLE `user`  (
 -- ----------------------------
 INSERT INTO `user` VALUES (1, 1, 'admin', '123456', '男', '1994-01-12');
 INSERT INTO `user` VALUES (2, 0, 'abc', '123456', '女', '2000-04-12');
+INSERT INTO `user` VALUES (3, 0, 'user', '123456', '女', '1992-02-01');
 
 SET FOREIGN_KEY_CHECKS = 1;

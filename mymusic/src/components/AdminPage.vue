@@ -104,7 +104,7 @@
                 <a-table :dataSource="musicData">
                     <a-table-column width="20%" title="序号" dataIndex="key" key="key" />
                     <a-table-column width="20%" title="音乐名" dataIndex="musicname" key="musicname" />
-                    <a-table-column width="20%" title="歌手" dataIndex="singername" key="singername" />
+                    <a-table-column width="20%" title="音乐人" dataIndex="singername" key="singername" />
                     <a-table-column width="20%" title="热度" dataIndex="hot" key="hot">
                         <template slot-scope="hot">
                             <span>{{hot}}</span>

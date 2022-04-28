@@ -6,7 +6,7 @@
             <div><img src="//y.gtimg.cn/music/common/upload/MUSIC_FOCUS/2023081.jpg?max_age=2592000" alt="three"></div>
             <div><img src="//y.gtimg.cn/music/common/upload/MUSIC_FOCUS/2029382.jpeg" alt="four"></div>
         </a-carousel>
-        <div style="font-size: 20px;margin-top: 30px">歌曲推荐</div>
+        <div style="font-size: 20px;margin-top: 30px">音乐推荐</div>
         <a-divider />
         <a-row :gutter="[16,16]">
             <a-col :span="6"  v-for="(music,index) in musicList" :key="index">

@@ -6,7 +6,7 @@
             <span> 身份:</span>
             <span style="margin-left: 40px" v-show="loginUser.rowid==='0'">普通用户</span>
             <span style="margin-left: 40px" v-show="loginUser.rowid==='1'">管理员</span>
-            <span style="margin-left: 40px" v-show="loginUser.rowid==='2'">歌手</span>
+            <span style="margin-left: 40px" v-show="loginUser.rowid==='2'">音乐人</span>
         </div>
         <div style="font-size: 17px;margin-top: 20px;margin-left: 20px">
             <span> 用户名:</span><span style="margin-left: 22px">{{loginUser.username}}</span>
@@ -69,9 +69,9 @@
             </a-form-model>
         </a-modal>
         <a-button  v-show="loginUser.rowid==='1'" size="small" style="margin-left: 30px;font-size: 12px" @click="goAdminPage">管理面板</a-button>
-        <a-button  v-show="loginUser.rowid==='0'" size="small" style="margin-left: 30px;font-size: 12px" @click="singerRequest">歌手申请</a-button>
-        <a-button  v-show="loginUser.rowid==='2'" size="small" style="margin-left: 30px;font-size: 12px" @click="goUpLoadMusic">上传歌曲</a-button>
-        <div v-show="collectMusic.length>0" style="font-size: 22px;margin-top: 100px">歌曲收藏</div>
+        <a-button  v-show="loginUser.rowid==='0'" size="small" style="margin-left: 30px;font-size: 12px" @click="singerRequest">申请音乐人</a-button>
+        <a-button  v-show="loginUser.rowid==='2'" size="small" style="margin-left: 30px;font-size: 12px" @click="goUpLoadMusic">发布音乐</a-button>
+        <div v-show="collectMusic.length>0" style="font-size: 22px;margin-top: 100px">音乐收藏</div>
         <a-divider ></a-divider>
         <a-row :gutter="[16,16]">
             <a-col :span="6"  v-for="(music,index) in collectMusic" :key="index">
